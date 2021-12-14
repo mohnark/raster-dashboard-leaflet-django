@@ -50,31 +50,6 @@ function get_pallete(content){
 
 
 
-// const getData = (e) => {   
-//     if (map.hasLayer(kent_17) == true){
-//         var url = getFeatureInfoUrl(e.latlng,  kent_17, base_url);
-//         getFeatureInfo(url, kent_17, function (callback){
-//             kent_17_palette = get_pallete(ajax_exec);
-//             console.log(kent_17_palette);
-//         });
-//         // kent_17_palette = get_pallete(ajax_exec);
-//         // display_content = display_content + "<br>Kent-2017: "+landuse_type[kent_17_palette];
-//         console.log("Waiting Ajax");
-//     }
-//     // if (map.hasLayer(kent_13) == true){
-//     //     var url = getFeatureInfoUrl(e.latlng,  kent_13, base_url);
-//     //     var ajx = getFeatureInfo(url, display_content, kent_13);
-//     //     console.log("Waiting Ajax");
-//         // kent_13_palette = get_pallete(ajax_exec);
-//         // display_content = display_content + "<br>Kent-2013: "+landuse_type[kent_13_palette];
-//     // }
-//     L.popup({ maxWidth: 800})
-//     .setLatLng(e.latlng)
-//     .setContent(display_content)
-//     .openOn(map);    
-
-// }
-
 
 function show_vals(latlng){
   bounding_box = L.latLngBounds([38.830543, -75.789989154039],[39.366856, -75.269031]);
@@ -149,67 +124,6 @@ else{
 
 function latlngget(e){   
   show_vals(e.latlng);
-
-  //     var pop_up = L.popup();
-//     var display_content = "Latitude: " + e.latlng.lat.toFixed(4) +
-//     "<br>Longitude: " + e.latlng.lng.toFixed(4);
-//     pop_up.setLatLng(e.latlng);
-//     // getData(e);
-//     try{
-//       var url_kent_17 = getFeatureInfoUrl(e.latlng,  kent_17, base_url);
-//     }
-
-//     catch(err){
-//       console.log(err);
-//     }
-    
-//     try{    
-//       var url_kent_13 = getFeatureInfoUrl(e.latlng,  kent_13, base_url);
-//     }
-
-//     catch(err){
-//       console.log(err);
-//     }
-    
-    
-//       $.when(
-//         $.ajax({
-//         url: url_kent_13,
-//         success: function (data, status, xhr) {
-//           var err = typeof data === 'string' ? null : data;
-//           kent_13_palette=get_pallete(data);
-//           if (map.hasLayer(kent_13) == true && kent_13_palette<8){
-//             display_content = display_content +     "<br>Kent-2013: "+  landuse_type[kent_13_palette];
-//             pop_up; 
-//         }
-
-//             },
-//         error: function (xhr, status, error) {
-//           showResults(error);
-//         }
-//       })
-//   ,
-//   $.ajax({
-//     url: url_kent_17,
-//     success: function (data, status, xhr) {
-//       var err = typeof data === 'string' ? null : data;
-//       kent_17_palette=get_pallete(data);
-//       if (map.hasLayer(kent_17) == true && kent_17_palette<8){
-//         display_content = display_content + "<br>Kent-2017: "+  landuse_type[kent_17_palette];
-//         pop_up; 
-//     }
-// },
-//     error: function (xhr, status, error) {
-//       showResults(error);
-//     }
-//   })
-// ).done(function (){
-//     pop_up.setContent(display_content)
-//     .openOn(map);
-//     console.log(display_content);
-// });     
-
-
 }
 
 

@@ -36,15 +36,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 
 
-# Application definition
-
-#"GDAL PATH SETTINGS"
-
-# if os.name == 'nt':
-#     VENV_BASE = os.environ['VIRTUAL_ENV']
-#     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
-#     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ['PATH']
-
 
 
 INSTALLED_APPS = [
@@ -94,19 +85,6 @@ WSGI_APPLICATION = 'salt_map.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Kent_',
-#         'USER' :'qgisadmin@qgidatabase',
-#         'PASSWORD':'pass@word1',
-#         'HOST':'qgidatabase.postgres.database.azure.com',
-#         'PORT':'5432'
-#     }
-# }
-# Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

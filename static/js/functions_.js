@@ -1,17 +1,17 @@
-function load17(){
-  map.removeLayer(kent_13);
-  kent_17.addTo(map);
-  var latlng = kent_17.getBounds().getCenter();
-  map.flyTo(latlng);
-}
+  function load17(){
+    map.removeLayer(kent_13);
+    kent_17.addTo(map);
+    var latlng = kent_17.getBounds().getCenter();
+    map.flyTo(latlng);
+  }
 
 
-function load13(){
-  map.removeLayer(kent_17);
-  kent_13.addTo(map);
-  var latlng = kent_13.getBounds().getCenter();
-  map.flyTo(latlng);
-}
+  function load13(){
+    map.removeLayer(kent_17);
+    kent_13.addTo(map);
+    var latlng = kent_13.getBounds().getCenter();
+    map.flyTo(latlng);
+  }
 
 
 function set_popup_content(responseData){
@@ -76,7 +76,7 @@ const getData = (e) => {
         var value = 0;
         lon = e.latlng.lng.toFixed(4);
         lat = e.latlng.lat.toFixed(4);
-        query_url = query_url.concat('https://rasterfile.azurewebsites.net/maps/rast_val/', lat.replace(".", "x"),'/',lon.replace(".", "x"),'/')
+        query_url = query_url.concat('//', lat.replace(".", "x"),'/',lon.replace(".", "x"),'/')
         console.log(query_url);
         sendHttpRequest('GET', query_url).then(responseData => {
         pop_up.setContent(set_popup_content(responseData))
