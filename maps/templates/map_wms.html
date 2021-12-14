@@ -1,0 +1,120 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>QGIS</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">    {% comment %} <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script> {% endcomment %}
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+            crossorigin=""></script>
+
+     <style type="text/css">
+      html, body, #map {
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+      }
+     </style>
+  </head>
+
+<body>
+
+
+{% comment %} <script type="text/javascript" src="{% static 'js/functions_.js' %}"></script> {% endcomment %}
+<script type="text/javascript"  src="{% static 'js/add_wms_func.js' %}"></script>
+
+<nav class="navbar navbar-inverse" style="margin-bottom:0px">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Layer
+                  <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><button type="button" class="btn btn-danger navbar-btn" value="2017"
+                                onclick="load17()">Kent 2017</button></li>
+                  <li><button type="button" class="btn btn-warning navbar-btn" value="2013"
+                    onclick="load13()">Kent 2013</button></li>
+                </ul>
+              </li>
+          </ul>
+          <button type="button" class="btn btn-dark navbar-btn" onclick="getLocation()">
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+          </button>
+              <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Latitude,Longitude" name="srch-term" id="srch-term" class="form-control">
+            </div>
+            <button type="button" class="btn btn-default" onclick="zoom2latlong()"><i class="glyphicon glyphicon-search"></i></button>
+          </form>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+    <div id="map"></div>
+    <script>
+      var map = L.map('map', {
+        center: [39.0874, -75.6189],
+        zoom: 7
+      });
+    base_osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var baseMaps = {
+      "OSM": base_osm
+    };
+
+    //Global Variables
+    var base_url = 'http://128.175.28.228/geoserver/wms';
+    {% comment %} var kent_17_palette = 15;
+    var kent_13_palette = 15; {% endcomment %}
+    var number_of_active_layers = 0;
+    var layers_queried = 0;
+    const landuse_type = ["Forest", "Marsh", "Salt Water Intrusion", "Built",
+        "Open Water", "Crop Fields", "Bare Soil Areas", "Open Field"];
+    var pop_up = L.popup();
+    L.marker([-75.789989154039,38.830543]).addTo(map);
+    L.marker([-75.269031,39.366856]).addTo(map);
+    ''
+    kent_17 = L.tileLayer.wms(base_url, {
+        layers: 'swi:Kent_2017',
+        transparent: true,
+        format: 'image/png'
+      })
+    kent_13 = L.tileLayer.wms(base_url, {
+        layers: 'swi:Kent_2013',
+        transparent: true,
+        format: 'image/png'
+      })
+
+    kent_17.addTo(map);
+    kent_13.addTo(map);
+
+    var overlayMaps = {
+      "Kent13": kent_13,
+      "Kent17": kent_17
+    };
+    L.control.layers(baseMaps, overlayMaps).addTo(map);
+    map.on('click', latlngget)
+
+
+</script>
+</body>
+</html>
